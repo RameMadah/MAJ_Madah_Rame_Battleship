@@ -24,8 +24,13 @@ public class BattleshipApplication {
     private void mainMenu() {
 
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
-
-
+         int auswahl = 0;
+         System.out.println("**** **** ****  **** **** ****");
+         System.out.println("**** **** BATTLESHIP **** ****");
+         System.out.println("**** **** ****  **** **** ****");
+         
+         
+         
         startNewGame();
 
 
