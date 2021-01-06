@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -51,7 +52,15 @@ public class BattleshipApplication {
          
         startNewGame();
 
+       Scanner scanner = new Scanner(System.in);
         
+       try {
+        auswahl = scanner.nextInt();
+         }
+       catch (InputMismatchException a ) {
+    	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste");
+       }
+       
         //test for a commit
 
 
