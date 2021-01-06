@@ -37,37 +37,40 @@ public class Board {
      // TODO generate ships (s. Aufgabe 4)
         public char generate() {
                          	
-            		int first = (int) (Math.random()*9)+1;
-            		int second = (int) (Math.random()*9)+1;
-            		int third = (int) (Math.random()*9)+1;
-            		int fourth = (int) (Math.random()*9)+1;
-            		int fifth = (int) (Math.random()*9)+1;
-            		int sixth = (int) (Math.random()*9)+1;
+            		int first = (int) (Math.random()*(9 - 5)) + 0;
+            		int second = (int) (Math.random()*4)+5;
+            		int third = (int) (Math.random()*6);
+            		int fourth = (int) (Math.random()*7);
+            		int fifth = (int) (Math.random()*6);
+            		int sixth = (int) (Math.random()*5);
+            		int ran = (int)(Math.random()*2)+8;
+            		fields[0][first]  =SHIP;
+                	fields[0][first+1]=SHIP;
             		
-            	fields[first][8] = SHIP;
-            	fields[first][9] = SHIP;
-            		
-            	fields[second][5] = SHIP;
-            	fields[second][6] = SHIP;
+                	fields[0][second]  = SHIP;
+                	fields[0][second+1]= SHIP;
             	
-            	fields[third][7] = SHIP;
-            	fields[third][8] = SHIP;
-            	fields[third][9] = SHIP;
+            	fields[2][third]  = SHIP;
+            	fields[2][third+1]= SHIP;
+            	fields[2][third+2]= SHIP;
             	
-            	fields[fourth][1] = SHIP;
-            	fields[fourth][2] = SHIP;
-            	fields[fourth][3] = SHIP;
+            	fields[4][fourth]  = SHIP;
+            	fields[4][fourth+1]= SHIP;
+            	fields[4][fourth+2]= SHIP;
             	
-            	fields[fifth][1] = SHIP;
-            	fields[fifth][2] = SHIP;
-            	fields[fifth][3] = SHIP;
-            	fields[fifth][4] = SHIP;
+            	fields[6][fifth] = SHIP;
+            	fields[6][fifth+1] = SHIP;
+            	fields[6][fifth+2] = SHIP;
+            	fields[6][fifth+3] = SHIP;
             	
-            	fields[sixth][5] = SHIP;
-            	fields[sixth][6] = SHIP;
-            	fields[sixth][7] = SHIP;
-            	fields[sixth][8] = SHIP;
-            	fields[sixth][9] = SHIP;
+            	fields[ran][sixth] = SHIP;
+            	fields[ran][sixth+1] = SHIP;
+            	fields[ran][sixth+2] = SHIP;
+            	fields[ran][sixth+3] = SHIP;
+            	fields[ran][sixth+4] = SHIP;
+            	
+            	
+            	
             	return SHIP;
               }
 
