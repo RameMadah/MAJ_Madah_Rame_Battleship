@@ -51,8 +51,7 @@ public class BattleshipApplication {
          
         startNewGame();
 
-        Scanner scanner = new Scanner(System.in);
-        auswahl = scanner.nextInt();
+        
         //test for a commit
 
 
