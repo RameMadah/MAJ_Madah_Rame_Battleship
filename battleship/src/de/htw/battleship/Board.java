@@ -22,40 +22,49 @@ public class Board {
      * Create a new Board and generate ships
      */
     public Board() {
+    	
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 fields[i][j] = EMPTY;
-            	if (fields[i][j] == EMPTY) {
-            	fields[1][8] = SHIP;
-            	fields[1][9] = SHIP;
+            
+            	if (fields[i][j] == EMPTY && fields[i][j] != SHIP) {
+            		int first = (int) (Math.random()*9)+1;
+            		int second = (int) (Math.random()*9)+1;
+            		int third = (int) (Math.random()*9)+1;
+            		int fourth = (int) (Math.random()*9)+1;
+            		int fifth = (int) (Math.random()*9)+1;
+            		int sixth = (int) (Math.random()*9)+1;
+            		
+            	fields[first][8] = SHIP;
+            	fields[first][9] = SHIP;
+            		
+            	fields[second][8] = SHIP;
+            	fields[second][9] = SHIP;
             	
-            	fields[3][8] = SHIP;
-            	fields[3][9] = SHIP;
+            	fields[third][7] = SHIP;
+            	fields[third][8] = SHIP;
+            	fields[third][9] = SHIP;
             	
-            	fields[5][7] = SHIP;
-            	fields[5][8] = SHIP;
-            	fields[5][9] = SHIP;
+            	fields[fourth][7] = SHIP;
+            	fields[fourth][8] = SHIP;
+            	fields[fourth][9] = SHIP;
             	
-            	fields[7][7] = SHIP;
-            	fields[7][8] = SHIP;
-            	fields[7][9] = SHIP;
+            	fields[fifth][1] = SHIP;
+            	fields[fifth][2] = SHIP;
+            	fields[fifth][3] = SHIP;
+            	fields[fifth][4] = SHIP;
             	
-            	fields[7][1] = SHIP;
-            	fields[7][2] = SHIP;
-            	fields[7][3] = SHIP;
-            	fields[7][4] = SHIP;
-            	
-            	fields[9][5] = SHIP;
-            	fields[9][6] = SHIP;
-            	fields[9][7] = SHIP;
-            	fields[9][8] = SHIP;
-            	fields[9][9] = SHIP;
-            	
+            	fields[sixth][5] = SHIP;
+            	fields[sixth][6] = SHIP;
+            	fields[sixth][7] = SHIP;
+            	fields[sixth][8] = SHIP;
+            	fields[sixth][9] = SHIP;
             	
             	}
-            	
+                
             }
         }
+            
 
         // TODO generate ships (s. Aufgabe 4)
 
