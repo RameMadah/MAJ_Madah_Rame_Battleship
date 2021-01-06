@@ -27,6 +27,31 @@ public class Board {
                 fields[i][j] = EMPTY;
             	if (fields[i][j] == EMPTY) {
             	fields[1][8] = SHIP;
+            	fields[1][9] = SHIP;
+            	
+            	fields[3][8] = SHIP;
+            	fields[3][9] = SHIP;
+            	
+            	fields[5][7] = SHIP;
+            	fields[5][8] = SHIP;
+            	fields[5][9] = SHIP;
+            	
+            	fields[7][7] = SHIP;
+            	fields[7][8] = SHIP;
+            	fields[7][9] = SHIP;
+            	
+            	fields[7][1] = SHIP;
+            	fields[7][2] = SHIP;
+            	fields[7][3] = SHIP;
+            	fields[7][4] = SHIP;
+            	
+            	fields[9][5] = SHIP;
+            	fields[9][6] = SHIP;
+            	fields[9][7] = SHIP;
+            	fields[9][8] = SHIP;
+            	fields[9][9] = SHIP;
+            	
+            	
             	}
             	
             }
