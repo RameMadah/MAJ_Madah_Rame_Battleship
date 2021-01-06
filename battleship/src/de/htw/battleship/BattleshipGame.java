@@ -45,7 +45,7 @@ public class BattleshipGame {
      */
     public void run() {
         running = true;
-        System.out.println("Spiel gestartet. Drücke ENTER während der Zieleingabe, im zum Hauptmenü zurückzukehren.");
+        System.out.println("Spiel gestartet. Drücke ENTER während der Zieleingabe, um zum Hauptmenü zurückzukehren.");
 
         while (running) {
             playersTurn();

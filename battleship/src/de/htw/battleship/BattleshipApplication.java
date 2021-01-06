@@ -60,10 +60,11 @@ public class BattleshipApplication {
          System.out.println("(5) Beenden");
          System.out.println(" ");
          System.out.println("Auswahl eingeben : ");
+         System.out.println(" ");
          
-         
-        startNewGame();
-        continueGame();
+        
+        
+        
 
         //Scanner um Werte einzugeben
        @SuppressWarnings("resource")
@@ -72,6 +73,7 @@ public class BattleshipApplication {
        // Exeption überwachen um andere Werte zu behandlen.
        try {
         auswahl = scanner.nextInt();
+        System.out.println("____________________________");
          }
        catch (InputMismatchException a ) {
     	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
