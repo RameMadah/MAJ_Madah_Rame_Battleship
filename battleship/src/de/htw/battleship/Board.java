@@ -26,8 +26,17 @@ public class Board {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 fields[i][j] = EMPTY;
-            
-            	if (fields[i][j] == EMPTY && fields[i][j] != SHIP) {
+                	
+                
+                
+                }
+            }
+        generate();
+        }
+           
+     // TODO generate ships (s. Aufgabe 4)
+        public char generate() {
+                         	
             		int first = (int) (Math.random()*9)+1;
             		int second = (int) (Math.random()*9)+1;
             		int third = (int) (Math.random()*9)+1;
@@ -38,16 +47,16 @@ public class Board {
             	fields[first][8] = SHIP;
             	fields[first][9] = SHIP;
             		
-            	fields[second][8] = SHIP;
-            	fields[second][9] = SHIP;
+            	fields[second][5] = SHIP;
+            	fields[second][6] = SHIP;
             	
             	fields[third][7] = SHIP;
             	fields[third][8] = SHIP;
             	fields[third][9] = SHIP;
             	
-            	fields[fourth][7] = SHIP;
-            	fields[fourth][8] = SHIP;
-            	fields[fourth][9] = SHIP;
+            	fields[fourth][1] = SHIP;
+            	fields[fourth][2] = SHIP;
+            	fields[fourth][3] = SHIP;
             	
             	fields[fifth][1] = SHIP;
             	fields[fifth][2] = SHIP;
@@ -59,19 +68,8 @@ public class Board {
             	fields[sixth][7] = SHIP;
             	fields[sixth][8] = SHIP;
             	fields[sixth][9] = SHIP;
-            	
-            	}
-                
-            }
-        }
-            
-
-        // TODO generate ships (s. Aufgabe 4)
-
-
-
-
-    }
+            	return SHIP;
+              }
 
     /**
      * Create a Board from an exported string.
