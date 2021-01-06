@@ -26,21 +26,33 @@ public class BattleshipApplication {
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
          int auswahl = 0;
          
+         
+         
          System.out.println("***********************");
          System.out.println("***** BATTLESHIP ******");
          System.out.println("***********************");
          // 
          System.out.println("(1) Neues Spiel starten");
+         
+         if(hasSavedGame() == true ) {
          System.out.println("(2) Spiel laden");
+         }
+         if (hasRunningGame() == true ) {
          System.out.println("(3) Spiel fortsetzen");
+         }
+         if(hasSavedGame() == true ) 
+         {
          System.out.println("(4) Spiel speichern");
+         }
          System.out.println("(5) Beenden");
+         
          System.out.println("Auswahl eingeben : ");
          
          
         startNewGame();
 
-
+        Scanner scanner = new Scanner(System.in);
+        auswahl = scanner.nextInt();
         //test for a commit
 
 
