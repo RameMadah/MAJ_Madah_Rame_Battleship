@@ -41,12 +41,12 @@ public class BattleshipApplication {
          
          
          // wird nur gezeigt, wenn das Spiel gespeichert wird.
-         if(hasSavedGame()) {
+         if(hasSavedGame() == true) {
          System.out.println("(2) Spiel laden");
          }
         
          //wird nur gezeigt, wenn das Spiel läuft.
-         if (hasRunningGame() == true ) {
+         if(hasRunningGame() == true ) {
          System.out.println("(3) Spiel fortsetzen");
          }
          
@@ -67,13 +67,13 @@ public class BattleshipApplication {
         
 
         //Scanner um Werte einzugeben
-       @SuppressWarnings("resource")
+       
 	Scanner scanner = new Scanner(System.in);
         
        // Exeption überwachen um andere Werte zu behandlen.
        try {
         auswahl = scanner.nextInt();
-        System.out.println("____________________________");
+        System.out.println("____________________");
          }
        catch (InputMismatchException a ) {
     	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
@@ -162,14 +162,25 @@ public class BattleshipApplication {
         return saveFilePath.toFile().exists();
     }
 
+    /**
+     * checks if game is runing
+     * 
+     */
     private boolean hasRunningGame() {
         return !(game == null || game.isFinished());
     }
 
+    /**
+     * let the game run
+     * 
+     */
     private void continueGame() {
         this.game.run();
     }
 
+     /**
+      * starts the game
+      */
     private void startNewGame() {
         this.game = new BattleshipGame();
         continueGame();

@@ -25,6 +25,10 @@ public class Board {
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 fields[i][j] = EMPTY;
+            	if (fields[i][j] == EMPTY) {
+            	fields[1][8] = SHIP;
+            	}
+            	
             }
         }
 
