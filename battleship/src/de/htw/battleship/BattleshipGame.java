@@ -64,8 +64,9 @@ public class BattleshipGame {
 
         // player wants to exit game
         if (playerShot == null) {
-            System.out.println("Spiel pausiert.");
-            running = false;
+            System.out.println("Zielfeld eingeben :");
+            System.out.println("________________");
+            running = true;
         }
 
         pause();
