@@ -23,44 +23,90 @@ public class BattleshipApplication {
     }
 
     private void mainMenu() {
-
+            
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
-         int auswahl = 0;
-         
-         
-         
+    	boolean exit = false;
+    	
+        while( exit == false) {
+    	int auswahl = 0;
+                          
+    	// Menu header
          System.out.println("***********************");
          System.out.println("***** BATTLESHIP ******");
          System.out.println("***********************");
-         // 
+         
+         
+         // wird immer im Menu gezeigt
          System.out.println("(1) Neues Spiel starten");
          
-         if(hasSavedGame() == true ) {
+         
+         // wird nur gezeigt, wenn das Spiel gespeichert wird.
+         if(hasSavedGame()) {
          System.out.println("(2) Spiel laden");
          }
+        
+         //wird nur gezeigt, wenn das Spiel läuft.
          if (hasRunningGame() == true ) {
          System.out.println("(3) Spiel fortsetzen");
          }
-         if(hasSavedGame() == true ) 
+         
+         //wird nur gezeigt, wenn das Spiel läuft.
+         if(hasRunningGame() == true ) 
          {
          System.out.println("(4) Spiel speichern");
          }
-         System.out.println("(5) Beenden");
          
+         //wird immer im Menu gezeigt.
+         System.out.println("(5) Beenden");
+         System.out.println(" ");
          System.out.println("Auswahl eingeben : ");
          
          
         startNewGame();
+        continueGame();
 
-       Scanner scanner = new Scanner(System.in);
+        //Scanner um Werte einzugeben
+       @SuppressWarnings("resource")
+	Scanner scanner = new Scanner(System.in);
         
+       // Exeption überwachen um andere Werte zu behandlen.
        try {
         auswahl = scanner.nextInt();
          }
        catch (InputMismatchException a ) {
-    	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste");
-       }
+    	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
+         }
+       System.out.println(" ");
+       System.out.println(auswahl+" ist gewählt.");
        
+       switch (auswahl) {
+       case 1:
+       startNewGame();
+       break;
+
+       case 2:
+       loadGame();
+       break;
+
+       case 3:
+       continueGame();
+       break;
+       
+       case 4:       
+       saveGame();
+       break;
+           
+       case 5:
+       System.out.println("Spiel ist ausgeschalten");
+       exit = true;
+       break;
+
+       default:
+       System.out.println("Ungueltige Eingabe");
+       }
+      
+       System.out.println("____________________________");
+       }
         //test for a commit
 
 
