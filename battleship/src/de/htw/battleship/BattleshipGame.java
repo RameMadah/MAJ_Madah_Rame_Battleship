@@ -3,6 +3,7 @@ package de.htw.battleship;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Arrays;
 
 /**
  * An instance of this class holds the state of a running match and the game logic.
@@ -21,7 +22,7 @@ public class BattleshipGame {
      * When playing, enemy ships should be hidden from the player.
      * Change below to FALSE for testing purposes during development of this program.
      */
-    private final boolean hideVillainShips = true;//changed by me
+    private final boolean hideVillainShips = false;//changed by me
 
     /**
      * Creates a new game with new boards.
@@ -58,26 +59,32 @@ public class BattleshipGame {
 
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);
-        int x=0;
-        int y=0;
+        
+        String myShot= "A1";       
+        int x = myShot.toUpperCase().charAt(0)- 65 ;
+        int y = Integer.parseInt(myShot.substring(1))- 1 ;
+       
         int[] playerShot = new int[]{x, y};
-
+       
+        
         // TODO (s. Aufgabe 5)
-     // Exeption überwachen um andere Werte zu behandlen.
-      
-        //int[] hit = new int[]{x, y};
+      //String hit= Arrays.toString(playershot);
+      //convertCoordinatesToInt(Arrays.toString(playerShot))
+  
         Scanner scanner = new Scanner(System.in);
         System.out.println("Zieleingabe :");       
        
-       try { x = scanner.nextInt();
-             y = scanner.nextInt();
-             
-         System.out.println("heads down pirates we are Shooting");
+       try { myShot = scanner.next();
+    	   System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
+           System.out.println("heads down pirates we are Shooting.");
           }
         
         catch (InputMismatchException a ) {
      	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
           }
+       finally{
+    	   System.out.println("geben Sie erst mal einen Buchstaben dann eine Zahl");
+       }
         System.out.println(" ");
         
         

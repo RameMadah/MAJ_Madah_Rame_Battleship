@@ -25,9 +25,9 @@ public class BattleshipApplication {
     private void mainMenu() {
             
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
-    	boolean exit = false;
+    	boolean running = false;
     	
-        while( exit == false) {
+        while( running == false) {
     	int auswahl = 0;
                           
     	// Menu header
@@ -100,7 +100,7 @@ public class BattleshipApplication {
            
        case 5:
        System.out.println("Spiel ist ausgeschalten");
-       exit = true;
+       running = true;
        break;
 
        default:
