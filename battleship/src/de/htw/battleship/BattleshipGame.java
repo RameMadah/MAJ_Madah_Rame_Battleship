@@ -1,5 +1,6 @@
 package de.htw.battleship;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -20,7 +21,7 @@ public class BattleshipGame {
      * When playing, enemy ships should be hidden from the player.
      * Change below to FALSE for testing purposes during development of this program.
      */
-    private final boolean hideVillainShips = false;
+    private final boolean hideVillainShips = true;//changed by me
 
     /**
      * Creates a new game with new boards.
@@ -57,16 +58,34 @@ public class BattleshipGame {
 
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);
-
-        int[] playerShot = null;
+        int x=0;
+        int y=0;
+        int[] playerShot = new int[]{x, y};
 
         // TODO (s. Aufgabe 5)
-
+     // Exeption überwachen um andere Werte zu behandlen.
+      
+        //int[] hit = new int[]{x, y};
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Zieleingabe :");       
+       
+       try { x = scanner.nextInt();
+             y = scanner.nextInt();
+             
+         System.out.println("heads down pirates we are Shooting");
+          }
+        
+        catch (InputMismatchException a ) {
+     	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
+          }
+        System.out.println(" ");
+        
+        
         // player wants to exit game
         if (playerShot == null) {
-            System.out.println("Zielfeld eingeben :");
-            System.out.println("________________");
-            running = true;
+            System.out.println("Spiel ist pausiert ");
+            
+            running = false;
         }
 
         pause();
