@@ -22,7 +22,7 @@ public class BattleshipApplication {
         battleshipApplication.mainMenu();
     }
 
-    private void mainMenu() {
+    public void mainMenu() {
             
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
     	boolean running = false;
@@ -58,9 +58,9 @@ public class BattleshipApplication {
          
          //wird immer im Menu gezeigt.
          System.out.println("(5) Beenden");
-         System.out.println(" ");
+         System.out.println(" ======================= ");
          System.out.println("Auswahl eingeben : ");
-         System.out.println(" ");
+         System.out.println(" ======================= ");
          
         
         
@@ -78,7 +78,7 @@ public class BattleshipApplication {
        catch (InputMismatchException a ) {
     	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
          }
-       System.out.println(" ");
+       System.out.println(" ======================= ");
        System.out.println(auswahl+" ist gewählt.");
        
        switch (auswahl) {

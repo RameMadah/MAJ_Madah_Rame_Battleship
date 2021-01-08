@@ -4,6 +4,12 @@ import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Arrays;
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 
 /**
  * An instance of this class holds the state of a running match and the game logic.
@@ -60,45 +66,55 @@ public class BattleshipGame {
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);
         
-        String myShot= "A1";       
-        int x = myShot.toUpperCase().charAt(0)- 65 ;
-        int y = Integer.parseInt(myShot.substring(1))- 1 ;
-       
-        int[] playerShot = new int[]{x, y};
-       
-        
+        String myShot;
         // TODO (s. Aufgabe 5)
       //String hit= Arrays.toString(playershot);
       //convertCoordinatesToInt(Arrays.toString(playerShot))
   
-        Scanner scanner = new Scanner(System.in);
+        Scanner input = new Scanner(System.in);
         System.out.println("Zieleingabe :");       
        
-       try { myShot = scanner.next();
+        
+        
+       try {  myShot = input.next();
+       int x = myShot.toUpperCase().charAt(0)- 65 ;
+       int y = Integer.parseInt(myShot.substring(1)) ;
+       int[] playerShot = new int[]{x, y};
+       
     	   System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
            System.out.println("heads down pirates we are Shooting.");
-          }
+           }
         
         catch (InputMismatchException a ) {
      	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
           }
-       finally{
-    	   System.out.println("geben Sie erst mal einen Buchstaben dann eine Zahl");
-       }
-        System.out.println(" ");
+      
+       
         
         
         // player wants to exit game
-        if (playerShot == null) {
-            System.out.println("Spiel ist pausiert ");
-            
-            running = false;
+       /*Scanner exit = new Scanner(System.in);
+         myShot = exit.next();
+         myShot == null || myShot.isEmpty()*/
+        if (exit()) {
+        System.out.println("Spiel ist pausiert ");            
+        running = true;
+        BattleshipApplication battleshipApplication = new BattleshipApplication();
+        battleshipApplication.mainMenu();
         }
-
         pause();
     }
 
-
+    
+    public  boolean exit() {
+    String Enter= new Scanner(System.in).nextLine() ;
+    BattleshipApplication battleshipApplication = new BattleshipApplication();
+    battleshipApplication.mainMenu();	
+    	pause();
+    	return true;
+    	}
+    
+    
     private void villainsTurn() {
 
         System.out.println("Gegner ist am Zug.");
