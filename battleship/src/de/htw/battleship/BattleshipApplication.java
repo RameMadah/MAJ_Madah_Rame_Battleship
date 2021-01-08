@@ -22,19 +22,19 @@ public class BattleshipApplication {
         battleshipApplication.mainMenu();
     }
 
-    public void mainMenu() {
+    private void mainMenu() {
             
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
-    	boolean running = false;
+    	boolean exit = false;
     	
-        while( running == false) {
+        while( exit == false) {
     	int auswahl = 0;
                           
     	// Menu header
          System.out.println("***********************");
          System.out.println("***** BATTLESHIP ******");
          System.out.println("***********************");
-         
+         System.out.println(" ");
          
          // wird immer im Menu gezeigt
          System.out.println("(1) Neues Spiel starten");
@@ -58,9 +58,11 @@ public class BattleshipApplication {
          
          //wird immer im Menu gezeigt.
          System.out.println("(5) Beenden");
-         System.out.println(" ======================= ");
+         System.out.println(" ");
+         System.out.println("=======================");
          System.out.println("Auswahl eingeben : ");
-         System.out.println(" ======================= ");
+         
+         
          
         
         
@@ -72,15 +74,19 @@ public class BattleshipApplication {
         
        // Exeption überwachen um andere Werte zu behandlen.
        try {
+    	
         auswahl = scanner.nextInt();
-        System.out.println("____________________");
+        System.out.println(auswahl+" ist gewählt.");
+        System.out.println("=======================");
+        System.out.println(" ");
+        
          }
        catch (InputMismatchException a ) {
     	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
          }
-       System.out.println(" ======================= ");
-       System.out.println(auswahl+" ist gewählt.");
        
+      
+       System.out.println(" ");
        switch (auswahl) {
        case 1:
        startNewGame();
@@ -100,7 +106,7 @@ public class BattleshipApplication {
            
        case 5:
        System.out.println("Spiel ist ausgeschalten");
-       running = true;
+       exit = true;
        break;
 
        default:

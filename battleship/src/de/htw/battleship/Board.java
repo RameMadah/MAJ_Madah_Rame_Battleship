@@ -22,57 +22,56 @@ public class Board {
      * Create a new Board and generate ships
      */
     public Board() {
-    	
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
                 fields[i][j] = EMPTY;
-                	
-                
-                
-                }
             }
-        generate();
         }
-           
-     // TODO generate ships (s. Aufgabe 4)
+        generate();
+    }
+        // TODO generate ships (s. Aufgabe 4)
         public char generate() {
-                         	
-            		int first = (int) (Math.random()*(9 - 5)) + 0;
-            		int second = (int) (Math.random()*4)+5;
-            		int third = (int) (Math.random()*6);
-            		int fourth = (int) (Math.random()*7);
-            		int fifth = (int) (Math.random()*6);
-            		int sixth = (int) (Math.random()*5);
-            		int ran = (int)(Math.random()*2)+8;
-            		fields[0][first]  =SHIP;
-                	fields[0][first+1]=SHIP;
-            		
-                	fields[0][second]  = SHIP;
-                	fields[0][second+1]= SHIP;
-            	
-            	fields[2][third]  = SHIP;
-            	fields[2][third+1]= SHIP;
-            	fields[2][third+2]= SHIP;
-            	
-            	fields[4][fourth]  = SHIP;
-            	fields[4][fourth+1]= SHIP;
-            	fields[4][fourth+2]= SHIP;
-            	
-            	fields[6][fifth] = SHIP;
-            	fields[6][fifth+1] = SHIP;
-            	fields[6][fifth+2] = SHIP;
-            	fields[6][fifth+3] = SHIP;
-            	
-            	fields[ran][sixth] = SHIP;
-            	fields[ran][sixth+1] = SHIP;
-            	fields[ran][sixth+2] = SHIP;
-            	fields[ran][sixth+3] = SHIP;
-            	fields[ran][sixth+4] = SHIP;
-            	
-            	
-            	
-            	return SHIP;
-              }
+         	
+    		int first = (int) (Math.random()*(9 - 5)) + 0;
+    		int second = (int) (Math.random()*4)+5;
+    		int third = (int) (Math.random()*6);
+    		int fourth = (int) (Math.random()*7);
+    		int fifth = (int) (Math.random()*6);
+    		int sixth = (int) (Math.random()*5);
+    		int ran = (int)(Math.random()*2)+8;
+    		fields[0][first]  =SHIP;
+        	fields[0][first+1]=SHIP;
+    		
+        	fields[0][second]  = SHIP;
+        	fields[0][second+1]= SHIP;
+    	
+    	fields[2][third]  = SHIP;
+    	fields[2][third+1]= SHIP;
+    	fields[2][third+2]= SHIP;
+    	
+    	fields[4][fourth]  = SHIP;
+    	fields[4][fourth+1]= SHIP;
+    	fields[4][fourth+2]= SHIP;
+    	
+    	fields[6][fifth] = SHIP;
+    	fields[6][fifth+1] = SHIP;
+    	fields[6][fifth+2] = SHIP;
+    	fields[6][fifth+3] = SHIP;
+    	
+    	fields[ran][sixth] = SHIP;
+    	fields[ran][sixth+1] = SHIP;
+    	fields[ran][sixth+2] = SHIP;
+    	fields[ran][sixth+3] = SHIP;
+    	fields[ran][sixth+4] = SHIP;
+    	
+    	
+    	
+    	return SHIP;
+      
+
+
+
+    }
 
     /**
      * Create a Board from an exported string.

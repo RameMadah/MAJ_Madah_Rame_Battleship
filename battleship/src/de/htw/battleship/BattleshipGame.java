@@ -1,15 +1,7 @@
 package de.htw.battleship;
 
-import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
-import java.util.Arrays;
-import java.io.File;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 
 /**
  * An instance of this class holds the state of a running match and the game logic.
@@ -28,7 +20,7 @@ public class BattleshipGame {
      * When playing, enemy ships should be hidden from the player.
      * Change below to FALSE for testing purposes during development of this program.
      */
-    private final boolean hideVillainShips = false;//changed by me
+    private final boolean hideVillainShips = false;
 
     /**
      * Creates a new game with new boards.
@@ -52,9 +44,9 @@ public class BattleshipGame {
      * Interrupt the loop to get back to main menu.
      */
     public void run() {
-        running = true;
-        System.out.println("Spiel gestartet. Drücke ENTER während der Zieleingabe, um zum Hauptmenü zurückzukehren.");
-
+        running = true;        
+        System.out.println("Spiel gestartet. Drücke ENTER während der Zieleingabe,"+"\n" +"um zum Hauptmenü zurückzukehren.");
+        System.out.println(" ");
         while (running) {
             playersTurn();
             if (running) villainsTurn();
@@ -65,56 +57,21 @@ public class BattleshipGame {
 
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);
-        
-        String myShot;
+
+        int[] playerShot = null;
+
         // TODO (s. Aufgabe 5)
-      //String hit= Arrays.toString(playershot);
-      //convertCoordinatesToInt(Arrays.toString(playerShot))
-  
-        Scanner input = new Scanner(System.in);
-        System.out.println("Zieleingabe :");       
-       
-        
-        
-       try {  myShot = input.next();
-       int x = myShot.toUpperCase().charAt(0)- 65 ;
-       int y = Integer.parseInt(myShot.substring(1)) ;
-       int[] playerShot = new int[]{x, y};
-       
-    	   System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
-           System.out.println("heads down pirates we are Shooting.");
-           }
-        
-        catch (InputMismatchException a ) {
-     	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
-          }
-      
-       
-        
-        
+
         // player wants to exit game
-       /*Scanner exit = new Scanner(System.in);
-         myShot = exit.next();
-         myShot == null || myShot.isEmpty()*/
-        if (exit()) {
-        System.out.println("Spiel ist pausiert ");            
-        running = true;
-        BattleshipApplication battleshipApplication = new BattleshipApplication();
-        battleshipApplication.mainMenu();
+        if (playerShot == null) {
+            System.out.println("Spiel pausiert.");
+            running = false;
         }
+
         pause();
     }
 
-    
-    public  boolean exit() {
-    String Enter= new Scanner(System.in).nextLine() ;
-    BattleshipApplication battleshipApplication = new BattleshipApplication();
-    battleshipApplication.mainMenu();	
-    	pause();
-    	return true;
-    	}
-    
-    
+
     private void villainsTurn() {
 
         System.out.println("Gegner ist am Zug.");
