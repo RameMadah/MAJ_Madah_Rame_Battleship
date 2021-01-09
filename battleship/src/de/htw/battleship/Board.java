@@ -32,7 +32,8 @@ public class Board {
         // TODO generate ships (s. Aufgabe 4)
         public char generate() {
          	
-    		int first = (int) (Math.random()*(9 - 5)) + 0;
+        	
+    		int first = (int) (Math.random()*(9 - 6)) + 0;
     		int second = (int) (Math.random()*4)+5;
     		int third = (int) (Math.random()*6);
     		int fourth = (int) (Math.random()*7);

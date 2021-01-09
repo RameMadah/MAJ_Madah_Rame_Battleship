@@ -13,7 +13,7 @@ import java.util.Scanner;
  * Requires Java 11 or higher.
  */
 public class BattleshipApplication {
-
+    //Attribute
     private BattleshipGame game;
     private final Path saveFilePath = Path.of("battleship.save");
 
@@ -21,7 +21,12 @@ public class BattleshipApplication {
         BattleshipApplication battleshipApplication = new BattleshipApplication();
         battleshipApplication.mainMenu();
     }
-
+    
+    // Methode
+    /**
+     * Zeigt den Menu auf die Konsole an,und gibt die Möglichkeit
+     * eine Option auszuwählen.
+     */
     private void mainMenu() {
             
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
@@ -61,12 +66,7 @@ public class BattleshipApplication {
          System.out.println(" ");
          System.out.println("=======================");
          System.out.println("Auswahl eingeben : ");
-         
-         
-         
-        
-        
-        
+              
 
         //Scanner um Werte einzugeben
        
@@ -82,38 +82,40 @@ public class BattleshipApplication {
         
          }
        catch (InputMismatchException a ) {
-    	   System.out.println("wählen Sie eine Möglichkeit aus der Optionenliste aus");   	   
+    	   System.out.println("Ops!");   	   
          }
        
       
-       System.out.println(" ");
+    // switch statement 
        switch (auswahl) {
-       case 1:
+       
+       case 1: //Falls input (1) das Spiel wird gestartet
        startNewGame();
        break;
 
-       case 2:
+       case 2: //Falls input (2) stellt wieder das Spiel aus dem File ""battleship.save" her 
        loadGame();
        break;
 
-       case 3:
+       case 3: //Falls input (3) bringt Das Spiel zum laufen wieder
        continueGame();
        break;
        
        case 4:       
-       saveGame();
+       saveGame();//Falls input (4) Speichert das Spiel im File "battleship.save" her
        break;
            
-       case 5:
+       case 5://Falls input (5) Spiel wird ausgeschaltet
        System.out.println("Spiel ist ausgeschalten");
        exit = true;
        break;
 
-       default:
+       default://Falls was anderes, dann wird dieses Text auf die Konsole angezeigt.
        System.out.println("Ungueltige Eingabe");
+       System.out.println("Bitte, wählen Sie eine Möglichkeit aus der Optionenliste aus");
        }
       
-       System.out.println("____________________________");
+       System.out.println("=======================");
        }
         //test for a commit
 
@@ -122,6 +124,8 @@ public class BattleshipApplication {
 
     /**
      * Restores a game from the file "battleship.save"
+     * 
+     * Stellt wieder das Spiel aus dem File ""battleship.save"
      */
     private void loadGame() {
         if (!hasSavedGame()) {
@@ -143,6 +147,8 @@ public class BattleshipApplication {
 
     /**
      * Saves a game into the file "battleship.save"
+     * 
+     * Speichert das Spiel im File "battleship.save" her
      */
     private void saveGame() {
         File file = saveFilePath.toFile();
@@ -163,6 +169,9 @@ public class BattleshipApplication {
 
     /**
      * Checks if file "battleship.save" exists
+     * 
+     * überprüft ob das File "battleship.save" existiert.
+     * @return true, wenn das File "battleship.save" existiert, false sonst.
      */
     private boolean hasSavedGame() {
         return saveFilePath.toFile().exists();
@@ -170,6 +179,9 @@ public class BattleshipApplication {
 
     /**
      * checks if game is runing
+     * 
+     * überprüft ob das Spiel läuft.
+     * @return true, wenn das Spiel läuft, false sonst.
      * 
      */
     private boolean hasRunningGame() {
@@ -179,6 +191,7 @@ public class BattleshipApplication {
     /**
      * let the game run
      * 
+     * Bringt Das Spiel zum laufen wieder
      */
     private void continueGame() {
         this.game.run();
@@ -186,6 +199,8 @@ public class BattleshipApplication {
 
      /**
       * starts the game
+      * 
+      * Startet das Spiel
       */
     private void startNewGame() {
         this.game = new BattleshipGame();
