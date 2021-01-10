@@ -1,5 +1,6 @@
 package de.htw.battleship;
 
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -8,7 +9,10 @@ import java.util.Scanner;
  */
 public class BattleshipGame {
 
-    final Board playerBoard;
+    private static final char EMPTY  = 0;
+	private static final char HIT = 0;
+	private static final char MISSED_SHOT = 0;
+	final Board playerBoard;
     final Board villainBoard;
 
     /**
@@ -57,21 +61,77 @@ public class BattleshipGame {
 
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);
+        System.out.println(" ");
+        System.out.println("Zielfeld eingabe:");
+      //int[] playerShot = null;
 
-        int[] playerShot = null;
-
+        //**************************************************************
         // TODO (s. Aufgabe 5)
-
-        // player wants to exit game
-        if (playerShot == null) {
-        	System.out.println("  ");
-            System.out.println("Spiel pausiert.");
-            running = false;
-        }
+        String myShot;      
+        Scanner input = new Scanner(System.in);      
+        try {  myShot = input.next();
        
-        pause();
+        int x = myShot.toUpperCase().charAt(0)- 65 ;
+        int y = Integer.parseInt(myShot.substring(1))-1 ;
+        int[] playerShot = new int[]{x, y};
+         	   System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
+               System.out.println(" ");
+            
+            
+            char hit = 'x';
+            char empty = '.';
+            char ship = 'O';
+            char missed = '-';
+       if(this.villainBoard.fields[x][y] == ship ) {
+     	  this.villainBoard.fields[x][y] = hit; 
+       }
+       if(this.villainBoard.fields[x][y] == empty  ) 
+     	  this.villainBoard.fields[x][y] = missed;
+        
+       else 
+       {
+    	System.out.println("Bitte nur Kooridinaten eingeben");}
+       System.out.println(" ");
+       }
+               
+      catch(NumberFormatException nfe) {
+    	System.out.println("Bitte nur Kooridinaten eingeben");
+    	System.out.println(" ");
+    	playersTurn();
+       }
+      catch (ArrayIndexOutOfBoundsException aio) {
+	   System.out.println("Bitte nur Kooridinaten eingeben");
+	   System.out.println(" ");
+	   playersTurn();
+	   }
+      catch (InputMismatchException ime ) {
+  	   System.out.println("Bitte nur Kooridinaten eingeben");
+  	   System.out.println(" ");
+  	   playersTurn();
+       }
+        
+       //
+       
+       
+        //****************************************************************
+      //exit();
+      //pause();  
     }
+    
+    public void shooting() {
+		
+	}
 
+	// player wants to exit game
+    public void exit() {
+        
+    	System.out.println("  ");
+        System.out.println("Spiel pausiert.");
+        
+        running = false;
+        
+    }
+    
 
     private void villainsTurn() {
 

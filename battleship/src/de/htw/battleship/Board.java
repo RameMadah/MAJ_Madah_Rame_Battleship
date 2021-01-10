@@ -16,7 +16,7 @@ public class Board {
 
     public static final int BOARD_SIZE = 10;
 
-    private final char[][] fields = new char[BOARD_SIZE][BOARD_SIZE];
+    final char[][] fields = new char[BOARD_SIZE][BOARD_SIZE];
 
     /**
      * Create a new Board and generate ships
@@ -64,14 +64,9 @@ public class Board {
     	fields[ran][sixth+2] = SHIP;
     	fields[ran][sixth+3] = SHIP;
     	fields[ran][sixth+4] = SHIP;
-    	
-    	
-    	
+    		
     	return SHIP;
       
-
-
-
     }
 
     /**

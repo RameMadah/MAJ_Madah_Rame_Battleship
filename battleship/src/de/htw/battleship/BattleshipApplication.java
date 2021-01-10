@@ -27,7 +27,7 @@ public class BattleshipApplication {
      * Zeigt den Menu auf die Konsole an,und gibt die Möglichkeit
      * eine Option auszuwählen.
      */
-    private void mainMenu() {
+    public void mainMenu() {
             
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
     	boolean exit = false;
