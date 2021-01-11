@@ -76,7 +76,7 @@ public class BattleshipApplication {
        try {
     	
         auswahl = scanner.nextInt();
-        System.out.println(auswahl+" ist gewählt.");
+        System.out.println(" "+ auswahl +" ist gewählt.");       
         System.out.println("=======================");
         System.out.println(" ");
         

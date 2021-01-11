@@ -33,13 +33,14 @@ public class Board {
         public char generate() {
          	
         	
-    		int first = (int) (Math.random()*(9 - 6)) + 0;
-    		int second = (int) (Math.random()*4)+5;
+    		final int first = (int) (Math.random()*(9 - 6)) + 0;
+    	    int second = (int) (Math.random()*4)+5;
     		int third = (int) (Math.random()*6);
     		int fourth = (int) (Math.random()*7);
     		int fifth = (int) (Math.random()*6);
     		int sixth = (int) (Math.random()*5);
     		int ran = (int)(Math.random()*2)+8;
+    		
     		fields[0][first]  =SHIP;
         	fields[0][first+1]=SHIP;
     		

@@ -69,12 +69,13 @@ public class BattleshipGame {
         // TODO (s. Aufgabe 5)
         String myShot;      
         Scanner input = new Scanner(System.in);      
-        try {  myShot = input.next();
-       
+        
+        try {  myShot = input.next();               
         int x = myShot.toUpperCase().charAt(0)- 65 ;
         int y = Integer.parseInt(myShot.substring(1))-1 ;
         int[] playerShot = new int[]{x, y};
          	   System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
+         	  System.out.println("              ~~");
                System.out.println(" ");
             
             
@@ -83,28 +84,42 @@ public class BattleshipGame {
             char ship = 'O';
             char missed = '-';
        if(this.villainBoard.fields[x][y] == ship ) {
-     	  this.villainBoard.fields[x][y] = hit; 
-       }
-       if(this.villainBoard.fields[x][y] == empty  ) 
-     	  this.villainBoard.fields[x][y] = missed;
-        
+    	 this.villainBoard.fields[x][y] = hit; 
+       	 System.out.println("Treffer!");
+     	 System.out.println(" ");
+     	pause();
+     	 }
+       
+       if(this.villainBoard.fields[x][y] == empty  ) {
+     	 this.villainBoard.fields[x][y] = missed;
+         System.out.println("Daneben! Das war wohl nix.");
+         System.out.println(" ");
+         pause();
+         }
+       
+       
        else 
        {
-    	System.out.println("Bitte nur Kooridinaten eingeben");}
+       System.out.println("Piraten nehmt eine Deckung, der Feind will schießen");
+       System.out.println("haltet euch fest");}
        System.out.println(" ");
        }
                
       catch(NumberFormatException nfe) {
+    	  System.out.println("Error 1");
     	System.out.println("Bitte nur Kooridinaten eingeben");
     	System.out.println(" ");
-    	playersTurn();
+    	playersTurn();    	
        }
       catch (ArrayIndexOutOfBoundsException aio) {
+    	  System.out.println("Error 2");
 	   System.out.println("Bitte nur Kooridinaten eingeben");
 	   System.out.println(" ");
 	   playersTurn();
+	   
 	   }
       catch (InputMismatchException ime ) {
+    	  System.out.println("Error 3");
   	   System.out.println("Bitte nur Kooridinaten eingeben");
   	   System.out.println(" ");
   	   playersTurn();
@@ -128,7 +143,7 @@ public class BattleshipGame {
     	System.out.println("  ");
         System.out.println("Spiel pausiert.");
         
-        running = false;
+        running = true;
         
     }
     
@@ -137,23 +152,75 @@ public class BattleshipGame {
 
         System.out.println("Gegner ist am Zug.");
         playerBoard.print(false);
-        int[] villainShot = getVillainShot();
+        
 
-        // TODO (s. Aufgabe 6)
+       // TODO (s. Aufgabe 6)
+        
+        int x;
+        int y;
+        char hit = 'x';
+        char empty = '.';
+        char ship = 'O';
+        char missed = '-';
+        
+    do {
+        x = new Random().nextInt(Board.BOARD_SIZE);
+        y = new Random().nextInt(Board.BOARD_SIZE);
+        }
+    while (playerBoard.getField(x, y) != Board.EMPTY);
 
-        pause();
+    int[] villainShot = new int[]{x, y};
+        System.out.println("Gegner zielt auf " + convertCoordinatesToString(villainShot));
+        
+   if(this.playerBoard.fields[x][y] == ship ) {
+	 this.playerBoard.fields[x][y] = hit; 
+   	 System.out.println("Treffer!");
+ 	 System.out.println(" ");
+ 	 pause();
+ 	 }
+   
+   if(this.playerBoard.fields[x][y] == empty  ) {
+ 	 this.playerBoard.fields[x][y] = missed;
+     System.out.println("Daneben! Das war wohl nix.");
+     System.out.println(" ");
+     pause();
+     }
+   
+   
+   else 
+   {
+   System.out.println("Bitte nur Kooridinaten eingeben");
+   System.out.println(" ");
+   pause();
+   }
+  
     }
+      
+   
+        
+        
+    
+    
+    
+    
 
     /**
      * Asks the user to press ENTER to continue.
      * Can be called anywhere in the game to avoid too much output at once.
      */
-    private void pause() {
+    public void pause() {
+    	System.out.println("=======================");
         System.out.println();
         System.out.println("Drücke ENTER um fortzufahren...");
         System.out.println();
+        System.out.println("=======================");
         new Scanner(System.in).nextLine();
     }
+    
+    
+    
+    
+    
 
     /**
      * Gets an array with the two coordinates (x,y) the villain shoots at.
@@ -179,6 +246,9 @@ public class BattleshipGame {
     }
 
 
+    
+    
+    
     /**
      * Converts alphanumeric board coordinates to array indexes, e.g. A1 to [0,0]
      */
