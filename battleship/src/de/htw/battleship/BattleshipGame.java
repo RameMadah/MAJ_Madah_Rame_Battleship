@@ -94,8 +94,10 @@ public class BattleshipGame {
        if(this.villainBoard.fields[x][y] == ship ) {
     	 this.villainBoard.fields[x][y] = hit; 
        	 System.out.println("Treffer!");
-       	 
-     	 System.out.println(" ");
+       	System.out.println("+1 Schuss zusätzlich.");
+         System.out.println(" ");
+     	playersTurn();
+     	
      	pause();
      	 }
        
