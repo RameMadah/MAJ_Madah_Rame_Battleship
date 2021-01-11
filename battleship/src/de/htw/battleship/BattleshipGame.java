@@ -107,20 +107,20 @@ public class BattleshipGame {
                
       catch(NumberFormatException nfe) {
     	  System.out.println("Error 1");
-    	System.out.println("Bitte nur Kooridinaten eingeben");
+    	System.out.println("Bitte nur Koordinaten eingeben");
     	System.out.println(" ");
     	playersTurn();    	
        }
       catch (ArrayIndexOutOfBoundsException aio) {
-    	  System.out.println("Error 2");
-	   System.out.println("Bitte nur Kooridinaten eingeben");
+         System.out.println("Error 2");
+       System.out.println("diese koordinaten sind außerhalb des feldes");	   
 	   System.out.println(" ");
 	   playersTurn();
 	   
 	   }
       catch (InputMismatchException ime ) {
     	  System.out.println("Error 3");
-  	   System.out.println("Bitte nur Kooridinaten eingeben");
+  	   System.out.println("Bitte nur Koordinaten eingeben");
   	   System.out.println(" ");
   	   playersTurn();
        }
@@ -158,7 +158,7 @@ public class BattleshipGame {
         
         int x;
         int y;
-        char hit = 'x';
+        char hit = 'X';
         char empty = '.';
         char ship = 'O';
         char missed = '-';
@@ -193,12 +193,29 @@ public class BattleshipGame {
    System.out.println(" ");
    pause();
    }
-  
+   Sieg();
     }
       
    
         
-        
+        public void Sieg() {
+        	int sinked1 = 0;
+        	int sinked2 = 0;
+        	int total = 0;
+        	
+        	char hit = 'X';
+        	for (int i=0;i>10;i++) {
+        		for (int j=0;j>10;j++) {
+        if (this.playerBoard.fields[i][j] == hit)
+        	sinked1 += 1;
+        		}
+        		total = sinked1 + sinked2;
+        	}
+        	if (total == 19)
+        		System.out.println("Sieg");
+        	running =false;
+        	exit();
+        }
     
     
     
