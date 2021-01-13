@@ -184,10 +184,10 @@ public class BattleshipGame {
 
         int x;
         int y;
-        int smart =0;
         int AI1 = 0;
+        int AI2 = 0;
         
-  	    int AI2 = (int) (Math.random()*9);
+  	        AI2 = (int) (Math.random()*9);
   	    if (AI2 ==0) {
   	    	AI1=0;
   	    	AI2=(int) (Math.random()*(9 - 6)); 	    	
@@ -201,33 +201,33 @@ public class BattleshipGame {
 			AI2 =(int) (Math.random()*9);
 			}
 		
-		else if (AI2 == 3) {
+		 if (AI2 == 3) {
 			AI1=8;
 			AI2=(int) (Math.random()*9);
 		    }
 		
-		else if (AI2 == 4) {
+		 if (AI2 == 4) {
 			AI1=4;
 			AI2=(int) (Math.random()*9);
 		    }
   	    
-		else if (AI2 == 5){ 
+		 if (AI2 == 5){ 
 			AI1=9;
 			AI2=(int) (Math.random()*9);
 		    }
-		else if (AI2 == 6){ 
+		 if (AI2 == 6){ 
 			AI1=6;
 			AI2=(int) (Math.random()*9);
 		    }
-		else if (AI2 == 7){ 
+		 if (AI2 == 7){ 
 			AI1=6;
 			AI2=(int) (Math.random()*9);
 		    }
-		else if (AI2 == 8) {
+		 if (AI2 == 8) {
 			AI1 = 8;
 			AI2=(int) (Math.random()*9);
 			}
-		else if (AI2 == 9) {
+		 if (AI2 == 9) {
 			AI1 = 9;
 			AI2=(int) (Math.random()*9);
 			}
@@ -292,7 +292,7 @@ public class BattleshipGame {
 			}
     }
     if(this.playerBoard.fields[x][y]==missed || this.playerBoard.fields[x][y]==hit ) {
-    	    AI2 = (int) (Math.random()*9);
+    	AI2 = (int) (Math.random()*9);
     	    
   	    if (AI2 ==0) {
   	    	AI1=0;
