@@ -83,8 +83,10 @@ public class BattleshipGame {
         else {
         
         int[] playerShot = new int[]{x, y};
+            y+=1;
          	   System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
-         	  System.out.println("              ~~");
+         	y-=1;
+         	   System.out.println("              ~~");
                System.out.println(" ");
             
             
