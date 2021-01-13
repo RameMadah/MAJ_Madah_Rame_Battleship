@@ -186,51 +186,7 @@ public class BattleshipGame {
         int y;
         int AI1 = 0;
         int AI2 = 0;
-        
-  	        AI2 = (int) (Math.random()*9);
-  	    if (AI2 ==0) {
-  	    	AI1=0;
-  	    	AI2=(int) (Math.random()*(9 - 6)); 	    	
-  	    }
-  	    else if (AI2 == 1) {
-			AI1=0;
-			AI2 =(int) (Math.random()*4)+5;
-			}
-  	    else if (AI2 == 2) {
-			AI1=2;
-			AI2 =(int) (Math.random()*9);
-			}
-		
-		 if (AI2 == 3) {
-			AI1=8;
-			AI2=(int) (Math.random()*9);
-		    }
-		
-		 if (AI2 == 4) {
-			AI1=4;
-			AI2=(int) (Math.random()*9);
-		    }
-  	    
-		 if (AI2 == 5){ 
-			AI1=9;
-			AI2=(int) (Math.random()*9);
-		    }
-		 if (AI2 == 6){ 
-			AI1=6;
-			AI2=(int) (Math.random()*9);
-		    }
-		 if (AI2 == 7){ 
-			AI1=6;
-			AI2=(int) (Math.random()*9);
-		    }
-		 if (AI2 == 8) {
-			AI1 = 8;
-			AI2=(int) (Math.random()*9);
-			}
-		 if (AI2 == 9) {
-			AI1 = 9;
-			AI2=(int) (Math.random()*9);
-			}
+      
         
         char hit = 'X';
         char empty = '.';
@@ -240,124 +196,79 @@ public class BattleshipGame {
     do {
         x = AI1 ;      		
         y = AI2 ;
+        AI2 = (int) (Math.random()*9);
+  	    if (AI2 ==0) {
+  	    	AI1=0;
+  	    	AI2=(int) (Math.random()*(9 - 6)); 	    	
+  	    }
+  	    else if (AI2 == 1) {
+			AI1=0;
+			AI2 =(int) (Math.random()*4)+5;
+			}
+  	    else if (AI2 == 2) {
+			AI1=2;
+			AI2 =(int) (Math.random()*9);
+			}
+		
+  	    else if (AI2 == 3) {
+			AI1=8;
+			AI2=(int) (Math.random()*9);
+		    }
+		
+  	    else if (AI2 == 4) {
+			AI1=4;
+			AI2=(int) (Math.random()*9);
+		    }
+  	    
+  	    else if (AI2 == 5){ 
+			AI1=9;
+			AI2=(int) (Math.random()*9);
+		    }
+  	    else if (AI2 == 6){ 
+			AI1=6;
+			AI2=(int) (Math.random()*9);
+		    }
+  	    else if (AI2 == 7){ 
+			AI1=6;
+			AI2=(int) (Math.random()*9);
+		    }
+  	    else if (AI2 == 8) {
+			AI1 = 8;
+			AI2=(int) (Math.random()*9);
+			}
+  	    else  {
+			AI1 = 9;
+			AI2=(int) (Math.random()*9);
+			}
            
         }
+    //while (playerBoard.getField(x, y) == Board.EMPTY || playerBoard.getField(x, y) == Board.HIT || playerBoard.getField(x, y) == Board.MISSED_SHOT );
+   while (playerBoard.getField(x, y) == Board.MISSED_SHOT || playerBoard.getField(x, y) == Board.HIT );
     
-    while (playerBoard.getField(x, y) != Board.EMPTY);
     
-    if(this.playerBoard.fields[x][y]==missed || this.playerBoard.fields[x][y]==hit ) {
-    	    AI2 = (int) (Math.random()*9);
-  	    if (AI2 ==0) {
-  	    	AI1=0;
-  	    	AI2=(int) (Math.random()*(9 - 6)); 	    	
-  	    }
-  	    else if (AI2 == 1) {
-			AI1=0;
-			AI2 =(int) (Math.random()*4)+5;
-			}
-  	    else if (AI2 == 2) {
-			AI1=2;
-			AI2 =(int) (Math.random()*9);
-			}
-		
-		else if (AI2 == 3) {
-			AI1=8;
-			AI2=(int) (Math.random()*9);
-		    }
-		
-		else if (AI2 == 4) {
-			AI1=4;
-			AI2=(int) (Math.random()*9);
-		    }
-  	    
-		else if (AI2 == 5){ 
-			AI1=9;
-			AI2=(int) (Math.random()*9);
-		    }
-		else if (AI2 == 6){ 
-			AI1=6;
-			AI2=(int) (Math.random()*9);
-		    }
-		else if (AI2 == 7){ 
-			AI1=6;
-			AI2=(int) (Math.random()*9);
-		    }
-		else if (AI2 == 8) {
-			AI1 = 8;
-			AI2=(int) (Math.random()*9);
-			}
-		else if (AI2 == 9) {
-			AI1 = 9;
-			AI2=(int) (Math.random()*9);
-			}
-    }
-    if(this.playerBoard.fields[x][y]==missed || this.playerBoard.fields[x][y]==hit ) {
-    	AI2 = (int) (Math.random()*9);
-    	    
-  	    if (AI2 ==0) {
-  	    	AI1=0;
-  	    	AI2=(int) (Math.random()*(9 - 6)); 	    	
-  	    }
-  	    else if (AI2 == 1) {
-			AI1=0;
-			AI2 =(int) (Math.random()*4)+5;
-			}
-  	    else if (AI2 == 2) {
-			AI1=2;
-			AI2 =(int) (Math.random()*9);
-			}
-		
-		else if (AI2 == 3) {
-			AI1=8;
-			AI2=(int) (Math.random()*9);
-		    }
-		
-		else if (AI2 == 4) {
-			AI1=4;
-			AI2=(int) (Math.random()*9);
-		    }
-  	    
-		else if (AI2 == 5){ 
-			AI1=9;
-			AI2=(int) (Math.random()*9);
-		    }
-		else if (AI2 == 6){ 
-			AI1=6;
-			AI2=(int) (Math.random()*9);
-		    }
-		else if (AI2 == 7){ 
-			AI1=6;
-			AI2=(int) (Math.random()*9);
-		    }
-		else if (AI2 == 8) {
-			AI1 = 8;
-			AI2=(int) (Math.random()*9);
-			}
-		else if (AI2 == 9) {
-			AI1 = 9;
-			AI2=(int) (Math.random()*9);
-			}
-    }
     
 
     int[] villainShot = new int[]{x, y};
+        y+=1;
         System.out.println("Gegner zielt auf " + convertCoordinatesToString(villainShot));
-        
+        y-=1;
+    
    if(this.playerBoard.fields[x][y] == ship ) {
 	 this.playerBoard.fields[x][y] = hit; 
    	 System.out.println("Treffer!");
- 	 System.out.println(" ");
+     System.out.println("Gengner bekommt +1 Schuss. ");
  	 verloren();
  	 pause();
  	 villainsTurn();
  	 }
    
-   if(this.playerBoard.fields[x][y] == empty  ) {
+   else if(this.playerBoard.fields[x][y] == empty  ) {
  	 this.playerBoard.fields[x][y] = missed;
      System.out.println("Daneben! Das war wohl nix.");
      System.out.println(" ");
      pause();
      }
+   
    
     }
     
@@ -371,17 +282,17 @@ public class BattleshipGame {
         
     	for (int i=0;i<this.playerBoard.fields.length;i++) {
     		
-    		for (int j=0;j<10;j++) {
-    if (this.villainBoard.fields[i].length == schuss)
+    		for (int j=0;j<this.playerBoard.fields[i].length ;j++) {
+    if (this.playerBoard.fields[i][j] == schuss)
     	versinkt += 1;
     		}
     	}
-    	if (versinkt == 19)
+    	if (versinkt == 19) {
     		System.out.println("Spiel ist verloren");
-    	running =true;
+    	running = true;
     	 pause();
     	 lastexit();
-  
+    	}
     }
       
    /**
@@ -402,7 +313,7 @@ public class BattleshipGame {
         	
         	if (versinkt == 19)  {
         		System.out.println("Spiel ist gewonnen!!");
-        	    running =true;
+        	    running = true;
         	    pause();
         	    lastexit();
         	}
