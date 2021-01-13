@@ -61,8 +61,9 @@ public class BattleshipGame {
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);  
         System.out.println(" ");
+        scored();
         System.out.println("Zielfeld eingabe:");
-      //int[] playerShot = null;
+      
 
         //**************************************************************
         // TODO (s. Aufgabe 5)
@@ -94,11 +95,12 @@ public class BattleshipGame {
        if(this.villainBoard.fields[x][y] == ship ) {
     	 this.villainBoard.fields[x][y] = hit; 
        	 System.out.println("Treffer!");
-       	System.out.println("+1 Schuss zusätzlich.");
+       	 System.out.println("+1 Schuss zusätzlich.");
          System.out.println(" ");
+        Sieg();
      	playersTurn();
      	
-     	pause();
+     	
      	 }
        
        if(this.villainBoard.fields[x][y] == empty  ) {
@@ -140,15 +142,13 @@ public class BattleshipGame {
        //
        
         scored();
-        Sieg();
+        
         //****************************************************************
       //exit();
       //pause();  
     }
     
-    public void shooting() {
-		
-	}
+  
 
 	// player wants to exit game
     public void exit() {
@@ -168,8 +168,9 @@ public class BattleshipGame {
     	System.out.println("  ");
         System.out.println("Spiel pausiert.");
         
-        running = true;
-        
+        running = false;
+        BattleshipApplication battleshipApplication = new BattleshipApplication();
+        battleshipApplication.mainMenu();
     }
     
 
@@ -180,19 +181,42 @@ public class BattleshipGame {
         
 
        // TODO (s. Aufgabe 6)
-        
+
         int x;
         int y;
+        int smart =0;
+        int AI1 = (int) (Math.random()*9);
+        
+  	    int AI2 = (int) (Math.random()*9);
+		if (AI2 == 1) {smart=0;}
+		else if (AI2 == 3) {smart=2;}
+		else if (AI2 == 5) { smart=4;}
+		else if (AI2 == 8) {smart = 8;}
+		else {smart = 9;}
+		
+        
         char hit = 'X';
         char empty = '.';
         char ship = 'O';
         char missed = '-';
         
     do {
-        x = new Random().nextInt(Board.BOARD_SIZE);
-        y = new Random().nextInt(Board.BOARD_SIZE);
+        x = AI1 ;
+          //new Random().nextInt(Board.BOARD_SIZE);       		
+        y = smart ;
+          //new Random().nextInt(Board.BOARD_SIZE);       
         }
     while (playerBoard.getField(x, y) != Board.EMPTY);
+    
+    if(this.playerBoard.fields[x][y]==missed || this.playerBoard.fields[x][y]==hit ) {
+    	x = AI1 ;
+        y = smart ;
+    }
+    if(this.playerBoard.fields[x][y]==missed || this.playerBoard.fields[x][y]==hit ) {
+    	x = AI1 ;
+        y = smart ;
+    }
+    
 
     int[] villainShot = new int[]{x, y};
         System.out.println("Gegner zielt auf " + convertCoordinatesToString(villainShot));
@@ -202,6 +226,7 @@ public class BattleshipGame {
    	 System.out.println("Treffer!");
  	 System.out.println(" ");
  	 pause();
+ 	 villainsTurn();
  	 }
    
    if(this.playerBoard.fields[x][y] == empty  ) {
@@ -211,36 +236,27 @@ public class BattleshipGame {
      pause();
      }
    
-   
-   else 
-   {
-   System.out.println("Bitte nur Kooridinaten eingeben");
-   System.out.println(" ");
-   pause();
-   }
-   
-   
     }
+    
     /**
      * 
      * LOSE THE GAME
      */
     public void verloren() {
-    	int sinked1 = 0;
-    	int sinked2 = 0;
-    	int total = 0;
-        char hit = 'X';
-    	for (int i=0;i>this.playerBoard.fields.length;i++) {
+    	int versinkt = 0;
+        char schuss = 'X';
+        
+    	for (int i=0;i<this.playerBoard.fields.length;i++) {
     		
-    		for (int j=0;j>10;j++) {
-    if (this.villainBoard.fields[i].length == hit)
-    	sinked1 += 1;
+    		for (int j=0;j<10;j++) {
+    if (this.villainBoard.fields[i].length == schuss)
+    	versinkt += 1;
     		}
-    		total = sinked1 + sinked2;
     	}
-    	if (total == 19)
-    		System.out.println("Sieg");
-    	running =false;
+    	if (versinkt == 19)
+    		System.out.println("Spiel ist verloren");
+    	running =true;
+    	 pause();
     	 lastexit();
   
     }
@@ -251,25 +267,22 @@ public class BattleshipGame {
     */
         
         public void Sieg() {
-        	int sinked1 = 0;
-        	int sinked2 = 0;
-        	int total = 0;
+        	int versinkt = 0;
+        	char schuss = 'X';
         	
-        	char hit = 'X';
-        	for (int i=0;i>this.villainBoard.fields.length;i++) {
-        		//sinked2 += 1;
-        		//if (this.villainBoard.fields[i][0] == hit)
-        		for (int j=0;j>10;j++) {
-        if (this.villainBoard.fields[i].length == hit)
-        	sinked1 += 1;
+        	for (int i=0;i<this.villainBoard.fields.length;i++) {       	
+            	for (int j=0;j<this.villainBoard.fields[i].length;j++) {
+        if (this.villainBoard.fields[i][j] == schuss)
+        	versinkt += 1;
         		}
-        		total = sinked1 + sinked2;
+            }
+        	
+        	if (versinkt == 19)  {
+        		System.out.println("Spiel ist gewonnen!!");
+        	    running =true;
+        	    pause();
+        	    lastexit();
         	}
-        	if (total == 19)
-        		System.out.println("Sieg");
-        	running =false;
-        	 lastexit();
-      
         }
     
     
@@ -294,27 +307,23 @@ public class BattleshipGame {
      * 
      */
     
-    public void scored() {
-    	 int total=0;
-    	 char missed = '-';
-   	     char hit = 'X';
+    public int scored() {
+    	 int summe=0;
+    	 char verfehlt = '-';
+   	     char Schuss = 'X';
 		   	
-	for (int i=0;i>this.villainBoard.fields.length;i++) {
-      for (int j=0;j>this.villainBoard.fields[i].length;j++) {
-    	 
-    	 if ( this.villainBoard.fields[i][j]==(hit) || this.villainBoard.fields[i][j]==(missed)) 
-			total ++;
-			total += total;
+	for (int i=0; i<this.villainBoard.fields.length; i++) {
+      for (int j=0; j<this.villainBoard.fields[i].length; j++) {
+    	 if ( this.villainBoard.fields[i][j] == Schuss ) 
+    		 summe ++;
+     	 if ( this.villainBoard.fields[i][j] == verfehlt)
+     		summe ++;
 		   }
-    	  total ++;
-    	  total += total;
+    	  
 		}
-     
-	total += total;
-	System.out.println("your score is "+ total );
-	   	  
-
-    }
+	System.out.println("your score is "+ summe );
+	return summe;
+   }
     
     
     
