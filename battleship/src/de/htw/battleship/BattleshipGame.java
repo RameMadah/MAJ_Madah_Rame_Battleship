@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 
-/**
+/*
  * An instance of this class holds the state of a running match and the game logic.
  */
 public class BattleshipGame {
@@ -23,7 +23,7 @@ public class BattleshipGame {
      * When playing, enemy ships should be hidden from the player.
      * Change below to FALSE for testing purposes during development of this program.
      */
-    private final boolean hideVillainShips = false;
+    private final boolean hideVillainShips = true;
 
     /**
      * Creates a new game with new boards.
@@ -48,7 +48,7 @@ public class BattleshipGame {
      */
     public void run() {
         running = true;        
-        System.out.println("Spiel gestartet. Drücke ENTER während der Zieleingabe,"+"\n" +"um zum Hauptmenü zurückzukehren.");
+        System.out.println("Spiel gestartet."+"\n"+" Drücke ENTER während der Zieleingabe,"+"\n" +"um zum Hauptmenü zurückzukehren.");
         System.out.println(" ");
         while (running) {
             playersTurn();
@@ -56,55 +56,56 @@ public class BattleshipGame {
         }
     }
 
+    /**
+     * gives the possibility to give coordinates or get back to the main menu
+     * 
+     */
     private void playersTurn() {
 
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);  
         System.out.println(" ");
-        scored();
         System.out.println("Zielfeld eingabe:");
       
 
         //**************************************************************
         // TODO (s. Aufgabe 5)
-        
+        //**************************************************************
         String myShot;      
         Scanner input = new Scanner(System.in);      
         
-        try {  myShot = input.next();               
+        try {  myShot = input.nextLine();
+        if(myShot.isEmpty()) {     //If user inserted "" the game goes back to main menu.
+            System.out.println(" ");
+            exit();
+        }
+        //If user inserts something else than "".
         int x = myShot.toUpperCase().charAt(0)- 65 ;
-        int y = Integer.parseInt(myShot.substring(1))-1 ;
-        
-       
-        if(myShot == "")
-           System.out.println("It works!");
-        
-        	
-        else {
-        
+        int y = Integer.parseInt(myShot.substring(1)) ;
         int[] playerShot = new int[]{x, y};
-            y+=1;
-         	   System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
-         	y-=1;
-         	   System.out.println("              ~~");
-               System.out.println(" ");
-            
-            
+       //print out the coordinates after converting them to string
+       System.out.println("Sie haben auf " + convertCoordinatesToString(playerShot) +" gezielt.");    
+   y = Integer.parseInt(myShot.substring(1))-1 ;
+ 	   System.out.println("              ~~");
+       System.out.println(" ");
+    
+    
             char hit = 'X';
             char empty = '.';
             char ship = 'O';
             char missed = '-';
+            
+       //printing out the damaged ship piece
        if(this.villainBoard.fields[x][y] == ship ) {
     	 this.villainBoard.fields[x][y] = hit; 
        	 System.out.println("Treffer!");
        	 System.out.println("+1 Schuss zusätzlich.");
          System.out.println(" ");
-        Sieg();
+        win();
      	playersTurn();
-     	
-     	
      	 }
-       
+        
+       //printing out the missed shots
        if(this.villainBoard.fields[x][y] == empty  ) {
      	 this.villainBoard.fields[x][y] = missed;
          System.out.println("Daneben! Das war wohl nix.");
@@ -116,10 +117,11 @@ public class BattleshipGame {
        
        else 
        {
-       System.out.println("Piraten nehmt eine Deckung, der Feind will schießen");
-       System.out.println("haltet euch fest");}
+       System.out.println("Piraten lasst uns die Welt eroberen !!");
+       System.out.println("haltet euch fest");
        System.out.println(" ");
        }
+        
         }    
       catch(NumberFormatException nfe) {
     	  System.out.println("Error 1");
@@ -140,14 +142,7 @@ public class BattleshipGame {
   	   System.out.println(" ");
   	   playersTurn();
        }
-        
-       //
-       
-        scored();
-        
-        //****************************************************************
-      //exit();
-      //pause();  
+     scored();
     }
     
   
@@ -157,30 +152,33 @@ public class BattleshipGame {
         
     	System.out.println("  ");
         System.out.println("Spiel pausiert.");
+ 
         
-        running = true;
         BattleshipApplication battleshipApplication = new BattleshipApplication();
-        battleshipApplication.mainMenu();
-        
-        
+        battleshipApplication.mainMenu();   
     }
+    
+    
     
  public void lastexit() {
         
-    	System.out.println("  ");
-        System.out.println("Spiel pausiert.");
-        
+		 System.out.println("  ");
+	     System.out.println("Spiel pausiert.");
+	        
         running = false;
         BattleshipApplication battleshipApplication = new BattleshipApplication();
         battleshipApplication.mainMenu();
     }
     
 
+ /**
+  * With a updated AI the computer will hit the player fields with a random yet a good strategy
+  *
+  */
     private void villainsTurn() {
 
         System.out.println("Gegner ist am Zug.");
         playerBoard.print(false);
-        
 
        // TODO (s. Aufgabe 6)
 
@@ -195,7 +193,7 @@ public class BattleshipGame {
         char ship = 'O';
         char missed = '-';
         
-    do {
+    do {  // generate random numbers that are most likely to hit the player ships
         x = AI1 ;      		
         y = AI2 ;
         AI2 = (int) (Math.random()*9);
@@ -244,26 +242,29 @@ public class BattleshipGame {
 			}
            
         }
-    //while (playerBoard.getField(x, y) == Board.EMPTY || playerBoard.getField(x, y) == Board.HIT || playerBoard.getField(x, y) == Board.MISSED_SHOT );
-   while (playerBoard.getField(x, y) == Board.MISSED_SHOT || playerBoard.getField(x, y) == Board.HIT );
+    //***************( HARD MODE )******************************
+    //if you want to set the game one the hard mode the use the code bellow it will always hit a ship
+    //while (playerBoard.getField(x, y) == Board.EMPTY 
+    //|| playerBoard.getField(x, y) == Board.HIT || playerBoard.getField(x, y) == Board.MISSED_SHOT );
     
     
-    
-
+    //prevent the computer from aiming on a known field
+    while (playerBoard.getField(x, y) == Board.MISSED_SHOT || playerBoard.getField(x, y) == Board.HIT );
+  
     int[] villainShot = new int[]{x, y};
-        y+=1;
-        System.out.println("Gegner zielt auf " + convertCoordinatesToString(villainShot));
-        y-=1;
+    //printing out the enemy coordinates
+    System.out.println("Gegner zielt auf " + convertCoordinatesToString(villainShot));
     
+    //in case of successful shot
    if(this.playerBoard.fields[x][y] == ship ) {
 	 this.playerBoard.fields[x][y] = hit; 
    	 System.out.println("Treffer!");
      System.out.println("Gengner bekommt +1 Schuss. ");
- 	 verloren();
+ 	 lost();
  	 pause();
  	 villainsTurn();
  	 }
-   
+   // in case of missed shot
    else if(this.playerBoard.fields[x][y] == empty  ) {
  	 this.playerBoard.fields[x][y] = missed;
      System.out.println("Daneben! Das war wohl nix.");
@@ -275,22 +276,23 @@ public class BattleshipGame {
     }
     
     /**
-     * 
-     * LOSE THE GAME
+     * counts the drowned ships of the player and depending on that will be decided if 
+     * the player lost the game or not
      */
-    public void verloren() {
-    	int versinkt = 0;
-        char schuss = 'X';
+    public void lost() {
+    	int drown = 0;
+        char hit = 'X';
         
     	for (int i=0;i<this.playerBoard.fields.length;i++) {
     		
     		for (int j=0;j<this.playerBoard.fields[i].length ;j++) {
-    if (this.playerBoard.fields[i][j] == schuss)
-    	versinkt += 1;
+    if (this.playerBoard.fields[i][j] == hit)
+    	drown += 1;
     		}
     	}
-    	if (versinkt == 19) {
-    		System.out.println("Spiel ist verloren");
+    	if (drown == 19) {
+        System.out.println("Spiel ist verloren");
+        System.out.println("~~~~~~~~~~~~~~~~~~");
     	running = true;
     	 pause();
     	 lastexit();
@@ -298,25 +300,26 @@ public class BattleshipGame {
     }
       
    /**
-    * 
-    * WIN THE GAME 
+    * counts the drowned ships of the computer and depending on the will 
+    * be decided if the player wins
+    *  
     */
-        
-        public void Sieg() {
-        	int versinkt = 0;
-        	char schuss = 'X';
+     public void win() {
+        	int sunk = 0;
+        	char hit = 'X';
         	
         	for (int i=0;i<this.villainBoard.fields.length;i++) {       	
             	for (int j=0;j<this.villainBoard.fields[i].length;j++) {
-        if (this.villainBoard.fields[i][j] == schuss)
-        	versinkt += 1;
+        if (this.villainBoard.fields[i][j] == hit)
+        	sunk += 1;
         		}
             }
         	
-        	if (versinkt == 19)  {
+        	if (sunk == 19)  {
         		System.out.println("Spiel ist gewonnen!!");
-        	    running = true;
-        	    pause();
+        		System.out.println("~~~~~~~~~~~~~~~~~~");
+                pause();
+                running = false;
         	    lastexit();
         	}
         }
@@ -339,26 +342,27 @@ public class BattleshipGame {
     }
     
     /**
-     * HIGH SCORE
+     * counts all shots of the player and gives back the total number of shots
+     * @return  total  the total number of all shots
      * 
      */
     
     public int scored() {
-    	 int summe=0;
-    	 char verfehlt = '-';
-   	     char Schuss = 'X';
+    	 int total=0;
+    	 char missed = '-';
+   	     char hit = 'X';
 		   	
 	for (int i=0; i<this.villainBoard.fields.length; i++) {
       for (int j=0; j<this.villainBoard.fields[i].length; j++) {
-    	 if ( this.villainBoard.fields[i][j] == Schuss ) 
-    		 summe ++;
-     	 if ( this.villainBoard.fields[i][j] == verfehlt)
-     		summe ++;
+    	 if ( this.villainBoard.fields[i][j] == hit ) 
+    		 total ++;
+     	 if ( this.villainBoard.fields[i][j] == missed)
+     		total ++;
 		   }
     	  
 		}
-	System.out.println("your score is "+ summe );
-	return summe;
+	System.out.println("your score is "+ total );
+	return total;
    }
     
     
@@ -384,7 +388,10 @@ public class BattleshipGame {
         return shot;
     }
 
-
+/**
+ * check if the ships are sinked 
+ * @return true if the player or the computer lost all the ship , false if not  
+ */
     public boolean isFinished() {
         return playerBoard.isWholeFleetSunk() || villainBoard.isWholeFleetSunk();
     }

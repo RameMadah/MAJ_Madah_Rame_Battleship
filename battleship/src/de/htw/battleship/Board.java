@@ -30,9 +30,14 @@ public class Board {
         generate();
     }
         // TODO generate ships (s. Aufgabe 4)
+    
+    
+    /**
+     * prints ships randomly on the board without letting them beside each other
+     * @return SHIP 
+     */
         public char generate() {
-         	
-        	
+	
     		final int first = (int) (Math.random()*(9 - 6)) + 0;
     	    int second = (int) (Math.random()*4)+5;
     		int third = (int) (Math.random()*6);
@@ -81,6 +86,8 @@ public class Board {
             }
         }
     }
+    
+    
 
     /**
      * Prints the board to System.out
@@ -113,6 +120,10 @@ public class Board {
         }
     }
 
+    /**
+     *  specified string to  character sequence 
+     * @return  builder.toString() gives back a reference to the object
+     */
     public String exportAsString() {
         StringBuilder builder = new StringBuilder();
         for (int y = 0; y < BOARD_SIZE; y++) {
@@ -125,6 +136,7 @@ public class Board {
     }
 
     /**
+     * checks if the fleet sunk or not
      * @return FALSE if at least one ship is remaining. TRUE otherwise.
      */
     public boolean isWholeFleetSunk() {
@@ -137,6 +149,12 @@ public class Board {
         return true;
     }
 
+    /**
+     * gets the char of the board fields at specific coordinates
+     * @param x inserted number of the row
+     * @param y inserted number of the column 
+     * @return fields[x][y]   the char at this coordinates
+     */
     public char getField(int x, int y) {
         return fields[x][y];
     }

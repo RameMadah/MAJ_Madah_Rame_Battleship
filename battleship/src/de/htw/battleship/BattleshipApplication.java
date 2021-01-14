@@ -13,26 +13,35 @@ import java.util.Scanner;
  * Requires Java 11 or higher.
  */
 public class BattleshipApplication {
-    //Attribute
+   
     private BattleshipGame game;
     private final Path saveFilePath = Path.of("battleship.save");
 
+  
+    
+    
+    
     public static void main(String[] args) {
-        BattleshipApplication battleshipApplication = new BattleshipApplication();
-        battleshipApplication.mainMenu();
+	 BattleshipApplication battleshipApplication = new BattleshipApplication();
+     battleshipApplication.mainMenu();
     }
     
-    // Methode
+  //*****************************************************************************************
+    
+    
+    
+    
+    
     /**
-     * Zeigt den Menu auf die Konsole an,und gibt die Möglichkeit
-     * eine Option auszuwählen.
+     * it shows the main menu on the console and let the user select
+     * between many options
      */
     public void mainMenu() {
             
         // TODO print main menu to the console. let user select an option. (s. Aufgabe 3)
-    	boolean exit = false;
+    	boolean running = true;
     	
-        while( exit == false) {
+        while( running == true) {
     	int auswahl = 0;
                           
     	// Menu header
@@ -41,38 +50,38 @@ public class BattleshipApplication {
          System.out.println("***********************");
          System.out.println(" ");
          
-         // wird immer im Menu gezeigt
+         // will always appear on the Menu 
          System.out.println("(1) Neues Spiel starten");
          
          
-         // wird nur gezeigt, wenn das Spiel gespeichert wird.
+         // will only appear if the game has a saved data.
          if(hasSavedGame() == true) {
          System.out.println("(2) Spiel laden");
          }
         
-         //wird nur gezeigt, wenn das Spiel läuft.
+         //will only appear if the game in running and the user paused the game
          if(hasRunningGame() == true ) {
          System.out.println("(3) Spiel fortsetzen");
          }
          
-         //wird nur gezeigt, wenn das Spiel läuft.
+         //will only appear if the game in running and the user paused the game
          if(hasRunningGame() == true ) 
          {
          System.out.println("(4) Spiel speichern");
          }
          
-         //wird immer im Menu gezeigt.
+         //will be always showen on the console
          System.out.println("(5) Beenden");
          System.out.println(" ");
          System.out.println("=======================");
          System.out.println("Auswahl eingeben : ");
               
 
-        //Scanner um Werte einzugeben
+        //Scanner to read values (input)
        
 	Scanner scanner = new Scanner(System.in);
         
-       // Exeption überwachen um andere Werte zu behandlen.
+       // watching out for exeptions and handling with it
        try {
     	
         auswahl = scanner.nextInt();
@@ -89,28 +98,28 @@ public class BattleshipApplication {
     // switch statement 
        switch (auswahl) {
        
-       case 1: //Falls input (1) das Spiel wird gestartet
+       case 1: //in case input (1) the game will start
        startNewGame();
        break;
 
-       case 2: //Falls input (2) stellt wieder das Spiel aus dem File ""battleship.save" her 
+       case 2: // in case input (2) the game will be loaded from""battleship.save" 
        loadGame();
        break;
 
-       case 3: //Falls input (3) bringt Das Spiel zum laufen wieder
+       case 3: //in case input (3) user can continue the game
        continueGame();
        break;
        
-       case 4:       
-       saveGame();//Falls input (4) Speichert das Spiel im File "battleship.save" her
+       case 4://in case input (4) the game will be saved in File "battleship.save"
+       saveGame();
        break;
            
-       case 5://Falls input (5) Spiel wird ausgeschaltet
+       case 5://in case input (5) the game will stop
        System.out.println("Spiel ist ausgeschalten");
-       exit = true;
+      
        break;
 
-       default://Falls was anderes, dann wird dieses Text auf die Konsole angezeigt.
+       default://in case something else then this text will be shown
        System.out.println("Ungueltige Eingabe");
        System.out.println("Bitte, wählen Sie eine Möglichkeit aus der Optionenliste aus");
        }
@@ -148,7 +157,6 @@ public class BattleshipApplication {
     /**
      * Saves a game into the file "battleship.save"
      * 
-     * Speichert das Spiel im File "battleship.save" her
      */
     private void saveGame() {
         File file = saveFilePath.toFile();
@@ -169,19 +177,16 @@ public class BattleshipApplication {
 
     /**
      * Checks if file "battleship.save" exists
-     * 
-     * überprüft ob das File "battleship.save" existiert.
-     * @return true, wenn das File "battleship.save" existiert, false sonst.
+     * @return  true, if the File "battleship.save" exist, false if not.
      */
     private boolean hasSavedGame() {
         return saveFilePath.toFile().exists();
     }
 
     /**
-     * checks if game is runing
+     * checks if game is running
      * 
-     * überprüft ob das Spiel läuft.
-     * @return true, wenn das Spiel läuft, false sonst.
+     * @return true, if the game is running, and false if not.
      * 
      */
     private boolean hasRunningGame() {
@@ -190,8 +195,6 @@ public class BattleshipApplication {
 
     /**
      * let the game run
-     * 
-     * Bringt Das Spiel zum laufen wieder
      */
     private void continueGame() {
         this.game.run();
@@ -199,8 +202,6 @@ public class BattleshipApplication {
 
      /**
       * starts the game
-      * 
-      * Startet das Spiel
       */
     private void startNewGame() {
         this.game = new BattleshipGame();
