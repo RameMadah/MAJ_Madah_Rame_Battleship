@@ -105,6 +105,7 @@ public class BattleshipGame {
        	 System.out.println("Treffer!");
        	 System.out.println("+1 Schuss zusätzlich.");
          System.out.println(" ");
+         
         win();
      	playersTurn();
      	 }
@@ -164,9 +165,12 @@ public class BattleshipGame {
  public void lastexit() {
         
 		 System.out.println("  ");
-	     System.out.println("Spiel pausiert.");
-	        
-        running = false;
+	     System.out.println("Spiel pausiert.");	  
+	     System.out.println("  ");
+	     System.out.println("__________________  ");
+	     scorelist();
+	     System.out.println("__________________  ");
+	     System.out.println("  ");
         BattleshipApplication battleshipApplication = new BattleshipApplication();
         battleshipApplication.mainMenu();
     }
@@ -291,19 +295,19 @@ public class BattleshipGame {
     	drown += 1;
     		}
     	}
-    	if (drown == 19) {
+    	if (drown == 19) { //if  the player lost 19 ships then he loses 
         System.out.println("Spiel ist verloren");
         System.out.println("~~~~~~~~~~~~~~~~~~");
-    	running = true;
-    	
+           	
     	 pause();
     	 lastexit();
+    	 running = false;
     	}
     }
       
    /**
     * counts the drowned ships of the computer and depending on the will 
-    * be decided if the player wins
+    * be decided if the player wins and leads to the Main menu
     *  
     */
      public void win() {
@@ -317,18 +321,39 @@ public class BattleshipGame {
         		}
             }
         	
-        	if (sunk == 19)  {
+        	if (sunk == 19)  { // if the player sinked 19 ships then he wins 
         		System.out.println("Spiel ist gewonnen!!");
         		System.out.println("~~~~~~~~~~~~~~~~~~");
-        	
+        		
                 pause();
                 lastexit();
-                running = false;
+                
         	}
         }
     
-    
-    
+     /**
+      * prints the Score list  on the console
+      */
+     public void scorelist() {
+    	   
+    	   	 int total=0;
+    	   	 char missed = '-';
+    	  	     char hit = 'X';
+    			   	
+    		for (int i=0; i<this.villainBoard.fields.length; i++) {
+    	     for (int j=0; j<this.villainBoard.fields[i].length; j++) {
+    	   	 if ( this.villainBoard.fields[i][j] == hit ) // adds successful shot to total shots
+    	   		 total ++;
+    	    	 if ( this.villainBoard.fields[i][j] == missed)// adds missed shot to total shots
+    	    		total ++;
+    			   }
+    	   	  
+    			}
+    		System.out.println("SCORE LISTE");
+    		System.out.println(BattleshipApplication.getName()+"'s  score ist "+ total); // prints the name & the total score
+    		System.out.println("player "+" score ist "+ "00");
+    		System.out.println("player "+" score ist "+ "00");
+     }
     
 
     /**

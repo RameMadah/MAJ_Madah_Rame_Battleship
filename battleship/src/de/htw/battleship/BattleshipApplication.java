@@ -13,17 +13,20 @@ import java.util.Scanner;
  * Requires Java 11 or higher.
  */
 public class BattleshipApplication {
-   
+    static String name;
     private BattleshipGame game;
     private final Path saveFilePath = Path.of("battleship.save"); //save path
-    private static BattleshipApplication instance=null; //We only want one instance of the application so that the game continues from last round.
+    private static BattleshipApplication instance=null; //one instance of the application 
+                       //  so that the game continues from last round.( Singleton )
+    
+                                                     
     
   
     
     
     
     public static void main(String[] args) {
-    	 BattleshipApplication.GetInstance().mainMenu(); //Example of using the function GetInstance.
+    	 BattleshipApplication.GetInstance().mainMenu(); //using the function GetInstance.
     }
     
   //*****************************************************************************************
@@ -208,7 +211,14 @@ public class BattleshipApplication {
       * starts the game
       */
     private void startNewGame() {
-    	 
+    	System.out.println("Name eingeben : ");
+   	    Scanner scanner = new Scanner(System.in);
+        try {this.name = scanner.nextLine();          
+             System.out.println( this.name +" möge deine Reise Beginnen");
+            }
+        catch(InputMismatchException e ) {
+        	  System.out.println("Ops!");   	   
+             }
         this.game = new BattleshipGame();
         continueGame();
     }
@@ -222,6 +232,14 @@ public class BattleshipApplication {
             instance=new BattleshipApplication();//If there is no instance of the game, we make a new one.
         }
         return instance;
+    }
+    
+    private void setName(String name) {
+    	this.name = name ;
+    }
+    
+    public static String getName() {
+    	return name;
     }
 
 }
