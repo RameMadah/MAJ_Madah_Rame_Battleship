@@ -10,7 +10,7 @@ import java.util.Scanner;
  */
 public class BattleshipGame {
 
-    
+   
 	final Board playerBoard;
     final Board villainBoard;
 
@@ -23,7 +23,7 @@ public class BattleshipGame {
      * When playing, enemy ships should be hidden from the player.
      * Change below to FALSE for testing purposes during development of this program.
      */
-    private final boolean hideVillainShips = true;
+    private final boolean hideVillainShips = false;
 
     /**
      * Creates a new game with new boards.
@@ -61,6 +61,11 @@ public class BattleshipGame {
      * 
      */
     private void playersTurn() {
+    	
+    	 String myShot;      
+         Scanner input = new Scanner(System.in);   
+         
+    	
 
         System.out.println("Spieler ist am Zug.");
         villainBoard.print(hideVillainShips);  
@@ -71,8 +76,7 @@ public class BattleshipGame {
         //**************************************************************
         // TODO (s. Aufgabe 5)
         //**************************************************************
-        String myShot;      
-        Scanner input = new Scanner(System.in);      
+          
         
         try {  myShot = input.nextLine();
         if(myShot.isEmpty()) {     //If user inserted "" the game goes back to main menu.
@@ -152,10 +156,7 @@ public class BattleshipGame {
         
     	System.out.println("  ");
         System.out.println("Spiel pausiert.");
- 
-        
-        BattleshipApplication battleshipApplication = new BattleshipApplication();
-        battleshipApplication.mainMenu();   
+        BattleshipApplication.GetInstance().mainMenu();
     }
     
     
@@ -294,6 +295,7 @@ public class BattleshipGame {
         System.out.println("Spiel ist verloren");
         System.out.println("~~~~~~~~~~~~~~~~~~");
     	running = true;
+    	
     	 pause();
     	 lastexit();
     	}
@@ -318,9 +320,10 @@ public class BattleshipGame {
         	if (sunk == 19)  {
         		System.out.println("Spiel ist gewonnen!!");
         		System.out.println("~~~~~~~~~~~~~~~~~~");
+        	
                 pause();
+                lastexit();
                 running = false;
-        	    lastexit();
         	}
         }
     
@@ -363,7 +366,13 @@ public class BattleshipGame {
 		}
 	System.out.println("your score is "+ total );
 	return total;
+
    }
+    
+    
+    
+    
+    
     
     
     
@@ -410,7 +419,7 @@ public class BattleshipGame {
     }
 
     /**
-     * Converts array indexes to ahlphanumeric board coordinates, e.g. [0,0] to A1
+     * Converts array indexes to alphanumeric board coordinates, e.g. [0,0] to A1
      */
     public static String convertCoordinatesToString(int[] input) {
         char x = (char) (input[0] + 65);

@@ -15,15 +15,15 @@ import java.util.Scanner;
 public class BattleshipApplication {
    
     private BattleshipGame game;
-    private final Path saveFilePath = Path.of("battleship.save");
-
+    private final Path saveFilePath = Path.of("battleship.save"); //save path
+    private static BattleshipApplication instance=null; //We only want one instance of the application so that the game continues from last round.
+    
   
     
     
     
     public static void main(String[] args) {
-	 BattleshipApplication battleshipApplication = new BattleshipApplication();
-     battleshipApplication.mainMenu();
+    	 BattleshipApplication.GetInstance().mainMenu(); //Example of using the function GetInstance.
     }
     
   //*****************************************************************************************
@@ -43,6 +43,7 @@ public class BattleshipApplication {
     	
         while( running == true) {
     	int auswahl = 0;
+    	
                           
     	// Menu header
          System.out.println("***********************");
@@ -70,7 +71,7 @@ public class BattleshipApplication {
          System.out.println("(4) Spiel speichern");
          }
          
-         //will be always showen on the console
+         //will be always shown on the console
          System.out.println("(5) Beenden");
          System.out.println(" ");
          System.out.println("=======================");
@@ -98,7 +99,8 @@ public class BattleshipApplication {
     // switch statement 
        switch (auswahl) {
        
-       case 1: //in case input (1) the game will start
+       case 1: //in case input (1) the game will start    	  
+    	   
        startNewGame();
        break;
 
@@ -190,9 +192,11 @@ public class BattleshipApplication {
      * 
      */
     private boolean hasRunningGame() {
-        return !(game == null || game.isFinished());
+        if(game!=null){
+            return !game.isFinished();
+        }
+        return false;
     }
-
     /**
      * let the game run
      */
@@ -204,8 +208,20 @@ public class BattleshipApplication {
       * starts the game
       */
     private void startNewGame() {
+    	 
         this.game = new BattleshipGame();
         continueGame();
+    }
+    
+    /**
+     * getter for the instance of the running game.
+     * @return instance , the main instance of the game
+     */
+    public static BattleshipApplication GetInstance(){ 
+        if(instance==null){
+            instance=new BattleshipApplication();//If there is no instance of the game, we make a new one.
+        }
+        return instance;
     }
 
 }
