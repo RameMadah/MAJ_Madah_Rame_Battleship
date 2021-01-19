@@ -234,10 +234,19 @@ public class BattleshipApplication {
         return instance;
     }
     
+    /**
+     * a setter for the name of the player
+     * @param name
+     */
+    
     private void setName(String name) {
     	this.name = name ;
     }
     
+    /**
+     * getter to access the name of the player
+     * @return name , the inserted in scanner 
+     */
     public static String getName() {
     	return name;
     }

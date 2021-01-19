@@ -41,6 +41,8 @@ public class BattleshipGame {
         this.villainBoard = villainBoard;
     }
 
+    
+    
 
     /**
      * Main game loop. Keep running to play.
@@ -57,6 +59,10 @@ public class BattleshipGame {
         }
     }
 
+    
+    
+    
+    
     /**
      * gives the possibility to give coordinates or get back to the main menu
      * 
@@ -83,6 +89,9 @@ public class BattleshipGame {
             System.out.println(" ");
             exit();
         }
+        
+        
+        
         //If user inserts something else than "".
         int x = myShot.toUpperCase().charAt(0)- 65 ;
         int y = Integer.parseInt(myShot.substring(1)) ;
@@ -166,12 +175,14 @@ public class BattleshipGame {
   	   System.out.println(" ");
   	   playersTurn();
        }
-     
     }
-    
+//****************************************************************************
   
 
-	// player wants to exit game
+	
+    /**
+     * pause the game and return to the Main menu 
+     */
     public void exit() {
         
     	System.out.println("  ");
@@ -180,7 +191,9 @@ public class BattleshipGame {
     }
     
     
-    
+    /**
+     * shows the score list and creates a new instance to start the game from the beginning.
+     */
  public void lastexit() {
         
 		 System.out.println("  ");
@@ -193,8 +206,10 @@ public class BattleshipGame {
         BattleshipApplication battleshipApplication = new BattleshipApplication();
         battleshipApplication.mainMenu();
     }
-    
 
+ 
+ 
+//********************************************************************************************
  /**
   * With a updated AI the computer will hit the player fields with a random yet a good strategy
   *
@@ -266,7 +281,7 @@ public class BattleshipGame {
 			}
            
         }
-    //***************( HARD MODE )******************************
+    //=================( HARD MODE )=======================
     //if you want to set the game one the hard mode the use the code bellow it will always hit a ship
     //while (playerBoard.getField(x, y) == Board.EMPTY 
     //|| playerBoard.getField(x, y) == Board.HIT || playerBoard.getField(x, y) == Board.MISSED_SHOT );
@@ -275,10 +290,14 @@ public class BattleshipGame {
     //prevent the computer from aiming on a known field
     while (playerBoard.getField(x, y) == Board.MISSED_SHOT || playerBoard.getField(x, y) == Board.HIT );
   
+    
     int[] villainShot = new int[]{x, y};
     //printing out the enemy coordinates
-    System.out.println("Gegner zielt auf " + convertCoordinatesToString(villainShot));
+    if( villainShot != null) {
+    System.out.println("Gegner zielt auf "+ convertCoordinatesToString(villainShot));
+    }
     
+
     //in case of successful shot
    if(this.playerBoard.fields[x][y] == ship ) {
 	 this.playerBoard.fields[x][y] = hit; 
@@ -315,10 +334,9 @@ public class BattleshipGame {
      System.out.println(" ");
      pause();
      }
-   
-   
     }
-    
+   
+ //***************************************************************************************
     /**
      * counts the drowned ships of the player and depending on that will be decided if 
      * the player lost the game or not
@@ -434,71 +452,6 @@ public class BattleshipGame {
    }
     
     
-    
-    /*public void playerSunkCheck() {
-    	
-        char hit = 'X';
-        System.out.println("Schiffe versinkt soweit :  ");
-        for (int i=0; i<10;i++) {
-          if(this.villainBoard.fields[0][i] == hit && this.villainBoard.fields[0][i-1] == hit ) {   
-               System.out.println("Piratenschiff am column A  versenkt!");
-                } 
-          
-          else if(this.villainBoard.fields[2][i] == hit && this.villainBoard.fields[2][i-1] == hit && this.villainBoard.fields[2][i-2] == hit ) {   
-               System.out.println("Piratenschiff am column C  versenkt!");
-                }
-            
-          else if(this.villainBoard.fields[4][i] == hit && this.villainBoard.fields[4][i-1] == hit && this.villainBoard.fields[4][i-2] == hit ) {   
-               System.out.println("Piratenschiff am column E  versenkt!");
-                }
-           
-          else if(this.villainBoard.fields[6][i] == hit && this.villainBoard.fields[6][i-1] == hit && this.villainBoard.fields[6][i-2] == hit && this.villainBoard.fields[8][i-3] == hit) {   
-               System.out.println("Piratenschiff am column G  versenkt!");
-                }
-           
-          else if(this.villainBoard.fields[8][i] == hit && this.villainBoard.fields[8][i-1] == hit && this.villainBoard.fields[8][i-2] == hit && this.villainBoard.fields[8][i-3] == hit && this.villainBoard.fields[9][i-4] == hit) {   
-               System.out.println("Piratenschiff am column I  versenkt!");
-                }
-           
-          else if(this.villainBoard.fields[9][i] == hit && this.villainBoard.fields[9][i-1] == hit && this.villainBoard.fields[9][i-2] == hit && this.villainBoard.fields[9][i-3] == hit && this.villainBoard.fields[9][i-4] == hit ) {   
-               System.out.println("Piratenschiff am column J  versenkt!");
-                }else { System.out.println(" ");}
-        }
-    }
-    
-    
-public void villainSunkCheck() {
-    	
-        char hit = 'X';
-        System.out.println("Schiffe versinkt soweit :  ");
-        for (int i=0; i<10;i++) {
-          if(this.playerBoard.fields[0][i] == hit && this.playerBoard.fields[0][i-1] == hit ) {   
-               System.out.println("der villain hat Piratenschiff am column A  versenkt!");
-                }
-          
-            if(this.playerBoard.fields[2][i] == hit && this.playerBoard.fields[2][i-1] == hit && this.playerBoard.fields[2][i-2] == hit ) {   
-               System.out.println("der villain hat Piratenschiff am column C  versenkt!");
-                }
-            
-           if(this.playerBoard.fields[4][i] == hit && this.playerBoard.fields[4][i-1] == hit && this.playerBoard.fields[4][i-2] == hit ) {   
-               System.out.println("der villain hat Piratenschiff am column E  versenkt!");
-                }
-           
-           if(this.playerBoard.fields[6][i] == hit && this.playerBoard.fields[6][i-1] == hit && this.playerBoard.fields[6][i-2] == hit && this.playerBoard.fields[8][i-3] == hit) {   
-               System.out.println("der villain hat Piratenschiff am column G  versenkt!");
-                }
-           
-           if(this.playerBoard.fields[8][i] == hit && this.playerBoard.fields[8][i-1] == hit && this.playerBoard.fields[8][i-2] == hit && this.playerBoard.fields[8][i-3] == hit && this.playerBoard.fields[9][i-4] == hit) {   
-               System.out.println("der villain hat Piratenschiff am column I  versenkt!");
-                }
-           
-            if(this.playerBoard.fields[9][i] == hit && this.playerBoard.fields[9][i-1] == hit && this.playerBoard.fields[9][i-2] == hit && this.playerBoard.fields[9][i-3] == hit && this.playerBoard.fields[9][i-4] == hit ) {   
-               System.out.println("der villain hat Piratenschiff am column J  versenkt!");
-                }    
-        }
-    }
-    
-    */
     
 
     /**
